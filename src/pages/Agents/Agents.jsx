@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
-import { Nav, SearchInput, Card } from '../../components'
+import { Nav, SearchInput, Card, Loading} from '../../components'
 
 import axios from 'axios'
 
 const Agents = () => {
     const [agents, setAgents] = useState([]);
     const [searchFilter, setSearchFilter] = useState('');
+    const [removeLoading, setRemoveLoading] = useState(false);
 
     useEffect(() => {
         axios.get(`https://valorant-api.com/v1/agents?isPlayableCharacter=true`)
             .then(res => {
                 setAgents(res.data.data)
+                setRemoveLoading(true)
             })
     }, [])
 
@@ -19,7 +21,7 @@ const Agents = () => {
     console.log(agents.filter(agent=>agent.displayName.includes("Je")))
 
   return (
-    <div className='h-full w-full font-pop'>
+    <div className='flex items-center justify-center flex-col lg:justify-start font-pop'>
       <Nav/>
       <SearchInput 
       onChange={(e)=> {setSearchFilter(e.target.value)}}
@@ -37,9 +39,8 @@ const Agents = () => {
                />
         )
       })}
-      
       </div>
-
+      {!removeLoading && <Loading/>}
       </div>
   )
 }

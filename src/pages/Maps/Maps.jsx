@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react'
 
-import { Nav, SearchInput, MapCard } from '../../components'
+import { Nav, SearchInput, MapCard, Loading } from '../../components'
 
 import axios from 'axios'
 
 const Maps = () => {
   const [maps, setMaps] = useState([]);
   const [searchFilter, setSearchFilter] = useState('');
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   useEffect(() => {
       axios.get('https://valorant-api.com/v1/maps')
           .then(res => {
               setMaps(res.data.data)
+              setRemoveLoading(true)
           })
   }, [])
 
   console.log(maps)
 
   return (
-    <div className='h-full w-full font-pop'>
+    <div className='flex items-center justify-center flex-col lg:justify-start'>
     <Nav/>
     <SearchInput
     onChange={(e)=> {setSearchFilter(e.target.value)}}
@@ -35,8 +37,9 @@ const Maps = () => {
                />
         )
       })}
-      
+
       </div>
+      {!removeLoading && <Loading/>}
       </div>
   )
 }
