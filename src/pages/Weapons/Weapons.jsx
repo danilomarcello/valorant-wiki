@@ -27,7 +27,7 @@ const Weapons = () => {
     placeholder='Search for a Weapon...'/>
 
 
-      <div className='w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 lg:gap-x-5 gap-y-6'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10'>
       {weapons.filter((weapon) =>
       weapon.displayName.toLowerCase().includes(searchFilter)).map((weapon, index) => {
         return(
