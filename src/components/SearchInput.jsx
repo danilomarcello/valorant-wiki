@@ -1,8 +1,10 @@
 import React from 'react'
 
-const SearchInput = () => {
+const SearchInput = ({ onChange, placeholder }) => {
   return (
-<input type="text" placeholder="Search for an Agent..." className="input w-full max-w-xs shadow"
+<input 
+onChange={onChange}
+type="text" placeholder={placeholder} className="input w-full m-10 max-w-xs shadow"
  />
   )
 }
