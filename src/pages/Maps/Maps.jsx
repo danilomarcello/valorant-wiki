@@ -17,15 +17,12 @@ const Maps = () => {
           })
   }, [])
 
-  console.log(maps)
-
   return (
     <div className='flex items-center justify-center flex-col lg:justify-start'>
     <Nav/>
     <SearchInput
     onChange={(e)=> {setSearchFilter(e.target.value)}}
     placeholder='Search for a Map...'/>
-
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10'>
       {maps.filter((map) =>
